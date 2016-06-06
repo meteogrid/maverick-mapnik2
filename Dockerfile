@@ -61,7 +61,9 @@ ENV RUNTIME_DEPS \
     libsigc++-2.0
 
 RUN : "Install base build packages" \
-   && apt-get update && apt-get install -y ${BUILD_DEPS}
+   && echo nameserver 8.8.8.8 > /etc/resolv.conf \
+   && apt-get update \
+   && apt-get install -y ${BUILD_DEPS}
 
 WORKDIR /tmp
 RUN : "Build and install Mapnik" \
